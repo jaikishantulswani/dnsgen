@@ -62,56 +62,56 @@ def insert_word_every_index(parts):
 
 	return domains
 
-@FAST_PERMUTATOR
-@PERMUTATOR
-def increase_num_found(parts):
-	'''
-	If number is found in existing subdomain, increase this number without any other alteration.
-	'''
-
-	# test.1.foo.example.com -> test.2.foo.example.com, test.3.foo.example.com, ...
-	# test1.example.com -> test2.example.com, test3.example.com, ...
-	# test01.example.com -> test02.example.com, test03.example.com, ...
-
-	domains = []
-	parts_joined = '.'.join(parts[:-1])
-	digits = re.findall(r'\d{1,3}', parts_joined)
-
-	for d in digits:
-		for m in range(NUM_COUNT):
-			replacement = str(int(d) + 1 + m).zfill(len(d))
-			tmp_domain = parts_joined.replace(d, replacement)
-			domains.append('{}.{}'.format(tmp_domain, parts[-1]))
-   
-	return domains
-
-@FAST_PERMUTATOR
-@PERMUTATOR
-def decrease_num_found(parts):
-	'''
-	If number is found in existing subdomain, decrease this number without any other alteration.
-	'''
-
-	# test.4.foo.example.com -> test.3.foo.example.com, test.2.foo.example.com, ...
-	# test4.example.com -> test3.example.com, test2.example.com, ...
-	# test04.example.com -> test03.example.com, test02.example.com, ...
-
-	domains = []
-	parts_joined = '.'.join(parts[:-1])
-	digits = re.findall(r'\d{1,3}', parts_joined)
-
-	for d in digits:
-		for m in range(NUM_COUNT):
-			new_digit = (int(d) - 1 - m)
-			if new_digit < 0:
-				break
-
-			replacement = str(new_digit).zfill(len(d))
-			tmp_domain = parts_joined.replace(d, replacement)
-			domains.append('{}.{}'.format(tmp_domain, parts[-1]))
-   
-	return domains
-
+#@FAST_PERMUTATOR
+#@PERMUTATOR
+#def increase_num_found(parts):
+#	'''
+#	If number is found in existing subdomain, increase this number without any other alteration.
+#	'''
+#
+#	# test.1.foo.example.com -> test.2.foo.example.com, test.3.foo.example.com, ...
+#	# test1.example.com -> test2.example.com, test3.example.com, ...
+#	# test01.example.com -> test02.example.com, test03.example.com, ...
+#
+#	domains = []
+#	parts_joined = '.'.join(parts[:-1])
+#	digits = re.findall(r'\d{1,3}', parts_joined)
+#
+#	for d in digits:
+#		for m in range(NUM_COUNT):
+#			replacement = str(int(d) + 1 + m).zfill(len(d))
+#			tmp_domain = parts_joined.replace(d, replacement)
+#			domains.append('{}.{}'.format(tmp_domain, parts[-1]))
+#   
+#	return domains
+#
+#@FAST_PERMUTATOR
+#@PERMUTATOR
+#def decrease_num_found(parts):
+#	'''
+#	If number is found in existing subdomain, decrease this number without any other alteration.
+#	'''
+#
+#	# test.4.foo.example.com -> test.3.foo.example.com, test.2.foo.example.com, ...
+#	# test4.example.com -> test3.example.com, test2.example.com, ...
+#	# test04.example.com -> test03.example.com, test02.example.com, ...
+#
+#	domains = []
+#	parts_joined = '.'.join(parts[:-1])
+#	digits = re.findall(r'\d{1,3}', parts_joined)
+#
+#	for d in digits:
+#		for m in range(NUM_COUNT):
+#			new_digit = (int(d) - 1 - m)
+#			if new_digit < 0:
+#				break
+#
+#			replacement = str(new_digit).zfill(len(d))
+#			tmp_domain = parts_joined.replace(d, replacement)
+#			domains.append('{}.{}'.format(tmp_domain, parts[-1]))
+#   
+#	return domains
+#
 @PERMUTATOR
 def prepend_word_every_index(parts):
 	'''
